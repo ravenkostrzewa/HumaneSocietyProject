@@ -1,0 +1,6 @@
+c:\users\raven\documents\visual studio 2015\Projects\HumaneSocietyProject\HumaneSocietyProject\bin\Debug\HumaneSocietyProject.exe.config
+c:\users\raven\documents\visual studio 2015\Projects\HumaneSocietyProject\HumaneSocietyProject\bin\Debug\HumaneSocietyProject.exe
+c:\users\raven\documents\visual studio 2015\Projects\HumaneSocietyProject\HumaneSocietyProject\bin\Debug\HumaneSocietyProject.pdb
+c:\users\raven\documents\visual studio 2015\Projects\HumaneSocietyProject\HumaneSocietyProject\obj\Debug\HumaneSociety.csprojResolveAssemblyReference.cache
+c:\users\raven\documents\visual studio 2015\Projects\HumaneSocietyProject\HumaneSocietyProject\obj\Debug\HumaneSocietyProject.exe
+c:\users\raven\documents\visual studio 2015\Projects\HumaneSocietyProject\HumaneSocietyProject\obj\Debug\HumaneSocietyProject.pdb

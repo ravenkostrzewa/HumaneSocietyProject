@@ -8,38 +8,22 @@ namespace HumaneSociety
 {
     class Employee
     {
-        string employeeName;
-        int employeeId;
-        int collectedAdoptionFee;
-        string adopterName;
-        string adopterBirthDate;
-        string phoneNumber;
-        string residenceType;
-        bool petsPermitted;
-        string userInput;
-        string streetAddress;
-        string city;
-        string state;
-        string zipCode;
-        string occupation;
-        string hoursHomePerDay;
-        bool children;
-        string adopterNotes;
-        string petId;
-        string animal;
-        string roomNumber;
-        bool adoptionStatus;
-        string petName;
-        string breedColor;
-        string petBirthDate;
-        string familyPet;
-        string acceptedDate;
-        string energyLevel;
-        string behaviorReport;
-        bool shots;
-        string diet;
-        int cost;
-        string petNotes;
+        public int collectedAdoptionFee;
+        public string userInput;
+        public string petId;
+        public string animal;
+        public string roomNumber;
+        public bool adoptionStatus;
+        public string petName;
+        public string breedColor;
+        public string petBirthDate;
+        public string familyPet;
+        public string acceptedDate;
+        public string energyLevel;
+        public string behaviorReport;
+        public bool shots;
+        public string diet;
+        public string petNotes;
 
         public void CreateNewPetProfile()
         {
@@ -69,7 +53,7 @@ namespace HumaneSociety
             Console.WriteLine("Do you know " + petId + "'s date of birth? Enter yes or no.");
             if (userInput == "yes")
             {
-                Console.WriteLine("Enter " + petId + "'s date of birth. Use the following format: 01/01/1990");
+                Console.WriteLine("Enter " + petId + "'s date of birth. Use numbers, avoid blackslashes or other symbols.");
                 petBirthDate = Console.ReadLine();
             }
 

@@ -8,29 +8,27 @@ namespace HumaneSociety
 {
     class Adopter
     {
-        string adopterId;
-        string adopterName;
-        string birthDate;
-        string phoneNumber;
-        string residenceType;
-        bool petsPermitted;
-        string userInput;
-        int userResponse;
-        string streetAddress;
-        string city;
-        string state;
-        string zipCode;
-        string occupation;
-        int hoursHomePerDay;
-        bool children;
-        string notes;
-        bool adoptAPet;
-        bool adoptionStatus;
-        int adoptionFeeCollected;
-        string petId;
-        string petName;
-        string breedColor;
-        string animal;
+        public string adopterName;
+        public string adopterId;
+        public string adopterBirthDate;
+        public string phoneNumber;
+        public string residenceType;
+        public bool petsPermitted;
+        public string userInput;
+        public string streetAddress;
+        public string cityState;
+        public string zipCode;
+        public string occupation;
+        public string hoursHomePerDay;
+        public bool children;
+        public string adopterNotes;
+        public string petId;
+        public string animal;
+        public string breedColor;
+        public string petName;
+        public bool adoptAPet;
+        public bool adoptionStatus;
+        public int adoptionFeeCollected;
 
         public void SearchAdopterId()
         {
@@ -39,9 +37,11 @@ namespace HumaneSociety
             if (userInput == "yes")
             {
                 Console.WriteLine("Enter your ID number.");
+                userInput = Console.ReadLine();
+                adopterId = userInput;
                 if (adopterId == userInput)
                 {
-                    Console.WriteLine("Would you like to view the pets? Enter 1 to view the pets, 2 to go to the main search menu,  or 3 to exit.");
+                    Console.WriteLine("Would you like to view the pets? Enter 1 to view the pets, 2 to go to the main search menu, or 3 to exit.");
                     userInput = Console.ReadLine();
                     if (userInput == "1")
                     {
@@ -70,55 +70,60 @@ namespace HumaneSociety
 
         public void CompleteApplication()
         {
-            Console.WriteLine("Thank you for your interest in adoption! What is your name?");
+            Console.WriteLine("Thank you for your interest in adopting a new pet! What is your name?");
             adopterName = Console.ReadLine();
-            Console.WriteLine("What is your date of birth? Enter your birthdate in the following format: 01/01/1990");
-            birthDate = Console.ReadLine();
-            Console.WriteLine("Enter your phone number in the following format: 121-212-1212");
+            Console.WriteLine("What is your date of birth? Enter your birthdate using numbers, not backslashes or other symbols.");
+            //check for all numbers
+            adopterBirthDate = Console.ReadLine();
+            Console.WriteLine("Enter your phone number using numbers, omit dashes or other symbols.");
+            //check for all numbers
             phoneNumber = Console.ReadLine();
             Console.WriteLine("Do you live in a house, apartment, condo, or studio? Enter other if you do not reside in one of those residence types and specify your residence type.");
             residenceType = Console.ReadLine();
             Console.WriteLine("Are you allowed to have pets there? Enter yes or no.");
             userInput = Console.ReadLine();
-            if (userInput == "yes")
-            {
-                petsPermitted = true;
-            }
-            else if (userInput == "no")
-            {
-                petsPermitted = false;
-            }
+                if (userInput == "yes")
+                {
+                    petsPermitted = true;
+                }
+                else if (userInput == "no")
+                {
+                    petsPermitted = false;
+                }   
             Console.WriteLine("What is your street address?");
             streetAddress = Console.ReadLine();
-            Console.WriteLine("What city do you live in?");
-            city = Console.ReadLine();
-            Console.WriteLine("What state do you live in?");
-            state = Console.ReadLine();
+            Console.WriteLine("What city and state do you live in? Enter them in the following format: City, State");
+            cityState = Console.ReadLine();
             Console.WriteLine("What is your zip code?");
             zipCode = Console.ReadLine();
             Console.WriteLine("Are there any children living with you? Enter yes or no.");
             userInput = Console.ReadLine();
-            if (userInput == "yes")
-            {
-                children = true;
-            }
-            else if (userInput == "no")
-            {
-                children = false;
-            }
+                if (userInput == "yes")
+                {
+                    children = true;
+                }
+                else if (userInput == "no")
+                {
+                    children = false;
+                }
+            Console.WriteLine("What is your occupation?");
+            occupation = Console.ReadLine();
+            Console.WriteLine("How many hours are you home per day?");
+            hoursHomePerDay = Console.ReadLine(); //should this be an int?
             Console.WriteLine("Notes: ");
-            notes = Console.ReadLine();
+            adopterNotes = Console.ReadLine();
         }
 
-        ViewPets()
+        public void ViewPets()
         {
-            Console.WriteLine("Would you like to search the pets by ID number? Enter yes or no.");
+            Console.WriteLine("Would you like to search for a pet by its ID number? Enter yes or no.");
             if (userInput == "yes")
             {
                 SearchByID();
             }
             else if (userInput == "no")
             {
+                SearchMenu();
             }
             else if (userInput != "yes" && userInput != "no")
             {
@@ -159,7 +164,8 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == petId)
             {
-                Console.WriteLine("Your search returned the following: "); //go to all information"
+                Console.WriteLine("Your search returned the following: "); //show all information"
+                Adopt();
             }
             else if (userInput != petId)
             {
@@ -186,7 +192,8 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == animal)
             {
-                Console.WriteLine("Your search returned the following: "); //show results; 
+                Console.WriteLine("Your search returned the following: "); //show results; You can see the full profile of a pet by searching its ID number.")
+                SearchByID();
             }
             else if (userInput != animal)
             {
@@ -213,7 +220,7 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == breedColor)
             {
-                Console.WriteLine("Your search returned the following: " + breedColor + animal + petName + petId + ".");
+                Console.WriteLine("Your search returned the following: " + breedColor + animal + petName + petId + ". You can see the full profile of a pet by searching its ID number.");
                 SearchByID();
             }
             else if (userInput != breedColor)

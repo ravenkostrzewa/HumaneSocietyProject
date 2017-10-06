@@ -8,22 +8,20 @@ namespace HumaneSociety
 {
     class PetProfile
     {
-        string petId;
-        string animal;
-        string roomNumber;
-        bool adoptionStatus;
-        string userInput;
-        string petName;
-        string breedColor;
-        string birthDate;
-        string familyPet;
-        string acceptedDate;
-        string energyLevel;
-        string behaviorReport;
-        bool shots;
-        string diet;
-        int cost;
-        string notes;
+        public string petId;
+        public string animal;
+        public string roomNumber;
+        public bool adoptionStatus;
+        public string petName;
+        public string breedColor;
+        public string petBirthDate;
+        public string familyPet;
+        public string acceptedDate;
+        public string energyLevel;
+        public string behaviorReport;
+        public bool shots;
+        public string diet;
+        public string petNotes;
 
     }
 }
