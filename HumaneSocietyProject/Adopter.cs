@@ -8,7 +8,7 @@ namespace HumaneSociety
 {
     class Adopter
     {
-        int adopterId;
+        string adopterId;
         string adopterName;
         string birthDate;
         string phoneNumber;
@@ -27,11 +27,49 @@ namespace HumaneSociety
         bool adoptAPet;
         bool adoptionStatus;
         int adoptionFeeCollected;
-        int petId;
+        string petId;
+        string petName;
+        string breedColor;
+        string animal;
+
+        public void SearchAdopterId()
+        {
+            Console.WriteLine("Do you have an ID number? Enter yes or no.");
+            userInput = Console.ReadLine();
+            if (userInput == "yes")
+            {
+                Console.WriteLine("Enter your ID number.");
+                if (adopterId == userInput)
+                {
+                    Console.WriteLine("Would you like to view the pets? Enter 1 to view the pets, 2 to go to the main search menu,  or 3 to exit.");
+                    userInput = Console.ReadLine();
+                    if (userInput == "1")
+                    {
+                        ViewPets();
+                    }
+                    else if (userInput == "2")
+                    {
+                        SearchMenu();
+                    }
+                    else if (userInput == "3")
+                    {
+                        EndProgram();
+                    }
+                }
+                else if (userInput == "no")
+                {
+                    CompleteApplication();
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, that is an invalid response.");
+                    SearchAdopterId();
+                }
+            }
+        }
 
         public void CompleteApplication()
         {
-            // id = math
             Console.WriteLine("Thank you for your interest in adoption! What is your name?");
             adopterName = Console.ReadLine();
             Console.WriteLine("What is your date of birth? Enter your birthdate in the following format: 01/01/1990");
@@ -71,13 +109,163 @@ namespace HumaneSociety
             Console.WriteLine("Notes: ");
             notes = Console.ReadLine();
         }
-        
-    
+
         ViewPets()
         {
-            //view pets    and search by traits method
+            Console.WriteLine("Would you like to search the pets by ID number? Enter yes or no.");
+            if (userInput == "yes")
+            {
+                SearchByID();
+            }
+            else if (userInput == "no")
+            {
+            }
+            else if (userInput != "yes" && userInput != "no")
+            {
+                Console.WriteLine("Sorry, that is an invalid response.");
+                ViewPets();
+            }
         }
 
+        public void SearchMenu()
+        {
+            Console.WriteLine("Would you like to search for your new pet by ID number, name, type of animal, or breed/color? Emter 1 to search by ID number, 2 to search by name, 3 to search by the type of animal, 4 to search by the breed/color, or 5 to exit.");
+            userInput = Console.ReadLine();
+            if (userInput == "1")
+            {
+                SearchByID();
+            }
+            else if (userInput == "2")
+            {
+                SearchByName();
+            }
+            else if (userInput == "3")
+            {
+                SearchByAnimal();
+            }
+            else if (userInput == "4")
+            {
+                SearchByBreedColor();
+            }
+            else if (userInput == "5")
+            {
+                EndProgram();
+            }
+        }
+
+        public void SearchByID()
+        {
+            Console.WriteLine("What is the ID number of the pet for which you are searching?");
+            userInput = Console.ReadLine();
+            if (userInput == petId)
+            {
+                Console.WriteLine("Your search returned the following: "); //go to all information"
+            }
+            else if (userInput != petId)
+            {
+                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by ID again, 2 to return to the search main menu, or 3 to exit.");
+                userInput = Console.ReadLine();
+                if (userInput == "1")
+                {
+                    SearchByAnimal();
+                }
+                else if (userInput == "2")
+                {
+                    SearchMenu();
+                }
+                else if (userInput == "3")
+                {
+                    EndProgram();
+                }
+            }
+        }
+
+        public void SearchByAnimal()
+        {
+            Console.WriteLine("What kind of animal are you searching for? (Eg. dog, cat, lizard, bird");
+            userInput = Console.ReadLine();
+            if (userInput == animal)
+            {
+                Console.WriteLine("Your search returned the following: "); //show results; 
+            }
+            else if (userInput != animal)
+            {
+                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by animal again, 2 to return to the search menu, or 3 to exit.");
+                userInput = Console.ReadLine();
+                if (userInput == "1")
+                {
+                    SearchByAnimal();
+                }
+                else if (userInput == "2")
+                {
+                    SearchMenu();
+                }
+                else if (userInput == "3")
+                {
+                    EndProgram();
+                }
+            }
+        }
+
+        public void SearchByBreedColor()
+        {
+            Console.WriteLine("What is the breed or color of the pet for which you are searching? Enter either the breed or the color.");
+            userInput = Console.ReadLine();
+            if (userInput == breedColor)
+            {
+                Console.WriteLine("Your search returned the following: " + breedColor + animal + petName + petId + ".");
+                SearchByID();
+            }
+            else if (userInput != breedColor)
+            {
+                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by breed or color again, 2 to return to the search menu, or 3 to exit.");
+                userInput = Console.ReadLine();
+                if (userInput == "1")
+                {
+                    SearchByBreedColor();
+                }
+                else if (userInput == "2")
+                {
+                    SearchMenu();
+                }
+                else if (userInput == "3")
+                {
+                    EndProgram();
+                }
+                else
+                {
+                    SearchByBreedColor();
+                }
+            }
+        }
+
+        public void SearchByName()
+        {
+            Console.WriteLine("What is the name of the pet for which you are searching?");
+            userInput = Console.ReadLine();
+            if (userInput == petName)
+            {
+                Console.WriteLine("Your search returned the following: " + petName + petId + animal + ".");
+                SearchByID();
+            }
+            else if (userInput != petName)
+            {
+                Console.WriteLine("Sorry, your search did you return any results. Enter 1 to search by name again, 2 to return the search menu, or 3 to exit.");
+                userInput = Console.ReadLine();
+                if (userInput == "1")
+                {
+                    SearchByName();
+                }
+                else if (userInput == "2")
+                {
+                    SearchMenu();
+                }
+                else if (userInput == "3")
+                {
+                    EndProgram();
+                }
+            }
+        }
 
         public void Adopt()
         {
@@ -99,6 +287,11 @@ namespace HumaneSociety
             {
                 Adopt();
             }
+        }
+
+        public void EndProgram()
+        {
+            Console.WriteLine("Thank you for visiting the humane society!");
         }
     }
 }

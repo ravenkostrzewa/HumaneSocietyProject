@@ -25,7 +25,7 @@ namespace HumaneSociety
         string hoursHomePerDay;
         bool children;
         string adopterNotes;
-        int petId;
+        string petId;
         string animal;
         string roomNumber;
         bool adoptionStatus;
@@ -34,29 +34,34 @@ namespace HumaneSociety
         string petBirthDate;
         string familyPet;
         string acceptedDate;
-        int energyLevel;
+        string energyLevel;
         string behaviorReport;
         bool shots;
         string diet;
         int cost;
         string petNotes;
 
-        public void createNewPetProfile()
+        public void CreateNewPetProfile()
         {
-            // id = Math(1000000, 9999999);
-            Console.WriteLine("What is " + petId + "'s name?");
-            petName = Console.ReadLine();
-            Console.WriteLine("Has " + petId + " been adopted yet? Enter yes or no.");
-            userInput = Console.ReadLine();
-            if (userInput == "yes")
+            Console.WriteLine("Create a unique ID number for the new pet. You can use letters and/or numbers.");
+            userInput = Console.ReadLine();     //work around
+            userInput = petId;      //work around
+            if (petId == userInput)     //work around
             {
-                adoptionStatus = true;
+                Console.WriteLine("What is " + petId + "'s name?");
+                petName = Console.ReadLine();
+                Console.WriteLine("Has " + petId + " been adopted yet? Enter yes or no.");
+                userInput = Console.ReadLine();
+                if (userInput == "yes")
+                {
+                    adoptionStatus = true;
+                }
+                else if (userInput == "no")
+                {
+                    adoptionStatus = false;
+                }
             }
-            else if (userInput == "no")
-            {
-                adoptionStatus = false;
-            }
-            Console.WriteLine("What kind of animal is this? Be general eg dog, cat, lizard... ");
+            Console.WriteLine("What kind of animal is this? (Eg. dog, cat, lizard, bird)");
             animal = Console.ReadLine();
             Console.WriteLine("What room number is " + petId + "occupying?");
             roomNumber = Console.ReadLine();
@@ -67,6 +72,7 @@ namespace HumaneSociety
                 Console.WriteLine("Enter " + petId + "'s date of birth. Use the following format: 01/01/1990");
                 petBirthDate = Console.ReadLine();
             }
+
             else if (userInput == "no")
             {
                 Console.WriteLine("How old would you guess that " + petId + " is? Guess in years, months, or weeks accordingly.");
@@ -77,7 +83,7 @@ namespace HumaneSociety
             Console.WriteLine("When was " + petId + " first brought to the humane society? Enter the month and year in the following format: 08/2017");
             acceptedDate = Console.ReadLine();
             Console.WriteLine("On a scale of 1-10 with 1 being lazy all the time and 10 being endlessly hyper, how would you rate " + petId + "'s energy level?");
-            energyLevel = Console.ReadLine().parseInt;
+            energyLevel = Console.ReadLine();
             Console.WriteLine("Describe " + petId + "'s behavior.");
             behaviorReport = Console.ReadLine();
             Console.WriteLine("Has " + petId + " had its shots? Enter yes or no.");
@@ -92,19 +98,17 @@ namespace HumaneSociety
             }
             Console.WriteLine("What does " + petId + " eat? How much? How often?");
             diet = Console.ReadLine();
-            Console.WriteLine("In dollars, how much does it cost to adopt " + petId + "?");
-            cost = Console.ReadLine().parseInt;
             Console.WriteLine("Notes:");
             petNotes = Console.ReadLine();
         }
 
 
-    public void checkAdoptionStatus()
+        public void CheckAdoptionStatus()
         {
             Console.WriteLine("Enter the ID of the pet for which you would like to check the adoption status.");
-            petId = Console.ReadLine().parseInt;
-            if (// petId exists)
-                {
+            userInput = Console.ReadLine();
+            if (userInput == petId)
+            {
                 if (userInput == "yes")
                 {
                     adoptionStatus = true;
@@ -115,47 +119,55 @@ namespace HumaneSociety
                     adoptionStatus = false;
                     Console.WriteLine(petId + " has not been adopted yet.");
                 }
-                else if //(petId does not exist)
-                        {
-                    Console.WriteLine("Sorry, that ID does not belong to any of the pets in the database. Enter search to try searching again or exit to exit the search.");
-                    userInput = Console.ReadLine();
-                    if (userInput == "search")
-                    {
-                        checkAdoptionStatus();
-                    }
-                    else if (userInput == "exit")
-                    {
-                        //exit
-                    }
+            }
+            else if (userInput != petId)
+            {
+                Console.WriteLine("Sorry, that ID does not belong to any of the pets in the database. Enter search to try searching again or exit to exit the search.");
+                userInput = Console.ReadLine();
+                if (userInput == "search")
+                {
+                    CheckAdoptionStatus();
                 }
-            }  
+                else if (userInput == "exit")
+                {
+                    EndProgram();
+                }
+            }
+        }
 
-        public void checkShotStatus()
+        public void CheckShotStatus()
         {
             Console.WriteLine("Enter the ID of the pet for which you would like to check the shot status.");
-            petId = Console.ReadLine().parseInt;
-            for (petId)
-                if (adoptionStatus == true)
+            userInput = Console.ReadLine();
+            if (petId == userInput)
+            {
+                if (shots == true)
                 {
-                    Console.WriteLine(petId + " has been adopted!");
+                    Console.WriteLine(petId + " has had its shots.");
                 }
-                else if (adoptionStatus == false)
+                else if (shots == false)
                 {
-                    Console.WriteLine(petId + " has not been adopted yet.");
+                    Console.WriteLine(petId + " has not had its shots yet.");
                 }
-                else if ()//petId does not exist
-                        {
+                else if (petId != userInput)
+                {
                     Console.WriteLine("Sorry, that ID does not belong to any of the pets in the database. Enter search to try searching again or exit to exit the search.");
                     userInput = Console.ReadLine();
                     if (userInput == "search")
                     {
-                        checkShotStatus();
+                        CheckShotStatus();
                     }
                     else if (userInput == "exit")
                     {
-                        //exit
+                        EndProgram();
                     }
                 }
+            }
+        }           
+               
+            public void EndProgram()
+        {
+            Console.WriteLine("Thank you for visiting the humane society!");
         }
     }
 }

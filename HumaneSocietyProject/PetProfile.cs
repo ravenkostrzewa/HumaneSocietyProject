@@ -8,7 +8,7 @@ namespace HumaneSociety
 {
     class PetProfile
     {
-        int petId;
+        string petId;
         string animal;
         string roomNumber;
         bool adoptionStatus;
@@ -18,7 +18,7 @@ namespace HumaneSociety
         string birthDate;
         string familyPet;
         string acceptedDate;
-        int energyLevel;
+        string energyLevel;
         string behaviorReport;
         bool shots;
         string diet;
