@@ -15,6 +15,7 @@ namespace HumaneSociety
         public string petName;
         public string breedColor;
         public string petAge;
+        public string petGender;
         public string familyPet;
         public string acceptedDate;
         public string energyLevel;

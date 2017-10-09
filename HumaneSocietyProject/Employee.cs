@@ -17,6 +17,7 @@ namespace HumaneSociety
         public bool adoptionStatus;
         public string petName;
         public string breedColor;
+        public string petGender;
         public string petAge;
         public string familyPet;
         public string acceptedDate;
@@ -30,65 +31,57 @@ namespace HumaneSociety
         {
             Console.WriteLine("Employee, what is your name?");
             employeeName = Console.ReadLine();
-            Console.WriteLine(employeeName + ", create a unique ID number for the new pet. You can use letters and/or numbers.");
+            Console.WriteLine(employeeName + ", create a unique ID number for the new pet. You can use letters and/or numbers."); //check for uniqueness
             userInput = Console.ReadLine();     //work around
             userInput = petId;      //work around
-            if (petId == userInput)     //work around
-            {
-                Console.WriteLine("What is " + petId + "'s name?");
-                petName = Console.ReadLine();
-                Console.WriteLine("Has " + petId + " been adopted yet? Enter yes or no.");
-                userInput = Console.ReadLine();
-                if (userInput == "yes")
+                if (petId == userInput)     //work around
                 {
-                    adoptionStatus = true;
+                    Console.WriteLine("What is " + petId + "'s name?");
+                    petName = Console.ReadLine();
                 }
-                else if (userInput == "no")
-                {
-                    adoptionStatus = false;
-                }
-            }
+            adoptionStatus = false;
             Console.WriteLine("What kind of animal is this? (Eg. dog, cat, lizard, bird)");
             animal = Console.ReadLine();
             Console.WriteLine("What room number is " + petId + "occupying?");
             roomNumber = Console.ReadLine();
             Console.WriteLine("What color and breed is " + petId + " ?");
-            Console.WriteLine("Do you know " + petId + "'s date of birth? Enter yes or no.");
-            if (userInput == "yes")
-            {
-                Console.WriteLine("Enter " + petId + "'s date of birth. Use numbers, avoid backslashes or other symbols.");
-                petAge = Console.ReadLine();
-            }
-
-            else if (userInput == "no")
-            {
-                Console.WriteLine("How old would you estimate that " + petId + " is? Estimate in years, months, or weeks accordingly.");
-                petAge = Console.ReadLine();
-            }
-            Console.WriteLine("Would " + petId + " make a good family pet? Enter yes, no, or with training.");
-            familyPet = Console.ReadLine();
+            breedColor = Console.ReadLine();
+            Console.WriteLine("What gender is " + petGender + "? Enter male or female.");
+            petGender = Console.ReadLine();
             Console.WriteLine("When was " + petId + " first brought to the humane society? Enter the month and year in the following format: 08/2017");
             acceptedDate = Console.ReadLine();
+            Console.WriteLine("Do you know " + petId + "'s date of birth? Enter yes or no.");
+                if (userInput == "yes")
+                {
+                    Console.WriteLine("Enter " + petId + "'s date of birth. Use numbers, avoid backslashes or other symbols.");
+                    petAge = Console.ReadLine();
+                }
+                else if (userInput == "no")
+                {
+                    Console.WriteLine("How old would you estimate that " + petId + " is? Estimate in years, months, or weeks accordingly.");
+                    petAge = Console.ReadLine();
+                }
+            Console.WriteLine("Would " + petId + " make a good family pet? Enter yes, no, or with training.");
+            familyPet = Console.ReadLine();
             Console.WriteLine("On a scale of 1-10 with 1 being sleeping all the time and 10 being endlessly hyper, how would you rate " + petId + "'s energy level?");
             energyLevel = Console.ReadLine();
             Console.WriteLine("Describe " + petId + "'s behavior.");
             behaviorReport = Console.ReadLine();
             Console.WriteLine("Has " + petId + " had its shots? Enter yes or no.");
             userInput = Console.ReadLine();
-            if (userInput == "yes")
-            {
-                shots = true;
-            }
-            else if (userInput == "no")
-            {
-                shots = false;
-            }
+                if (userInput == "yes")
+                {
+                    shots = true;
+                }
+                else if (userInput == "no")
+                {
+                    shots = false;
+                }
             Console.WriteLine("What does " + petId + " eat? How much? How often?");
             diet = Console.ReadLine();
             Console.WriteLine("Notes:");
             petNotes = Console.ReadLine();
         }
-
 
         public void CheckAdoptionStatus()
         {

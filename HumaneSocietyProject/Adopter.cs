@@ -135,7 +135,7 @@ namespace HumaneSociety
 
         public void SearchMenu()
         {
-            Console.WriteLine("Would you like to search for your new pet by ID number, name, type of animal, or breed/color? Emter 1 to search by ID number, 2 to search by name, 3 to search by the type of animal, 4 to search by the breed/color, or 5 to exit.");
+            Console.WriteLine("Would you like to search for your new pet by ID number, name, type of animal, or breed/color? Enter 1 to search by ID number, 2 to search by name, 3 to search by the type of animal, 4 to search by the breed/color, or 5 to exit.");
             userInput = Console.ReadLine();
             if (userInput == "1")
             {
@@ -193,7 +193,7 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == animal)
             {
-                Console.WriteLine("Your search returned the following: "); //show results; You can see the full profile of a pet by searching its ID number.")
+                Console.WriteLine("Your search returned the following: Type of Animal: " + animal + "Breed/Color: " + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
                 SearchByID();
             }
             else if (userInput != animal)
@@ -221,7 +221,7 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == breedColor)
             {
-                Console.WriteLine("Your search returned the following: " + breedColor + animal + petName + petId + ". You can see the full profile of a pet by searching its ID number.");
+                Console.WriteLine("Your search returned the following: Type of Animal: " + animal + "Breed/Color: " + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
                 SearchByID();
             }
             else if (userInput != breedColor)
@@ -253,7 +253,7 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == petName)
             {
-                Console.WriteLine("Your search returned the following: " + petName + petId + animal + ".");
+                Console.WriteLine("Your search returned the following: Type of Animal: " + animal + "Breed/Color:" + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
                 SearchByID();
             }
             else if (userInput != petName)
