@@ -8,6 +8,7 @@ namespace HumaneSociety
 {
     class Employee
     {
+        public string employeeName;
         public int collectedAdoptionFee;
         public string userInput;
         public string petId;
@@ -16,7 +17,7 @@ namespace HumaneSociety
         public bool adoptionStatus;
         public string petName;
         public string breedColor;
-        public string petBirthDate;
+        public string petAge;
         public string familyPet;
         public string acceptedDate;
         public string energyLevel;
@@ -27,7 +28,9 @@ namespace HumaneSociety
 
         public void CreateNewPetProfile()
         {
-            Console.WriteLine("Create a unique ID number for the new pet. You can use letters and/or numbers.");
+            Console.WriteLine("Employee, what is your name?");
+            employeeName = Console.ReadLine();
+            Console.WriteLine(employeeName + ", create a unique ID number for the new pet. You can use letters and/or numbers.");
             userInput = Console.ReadLine();     //work around
             userInput = petId;      //work around
             if (petId == userInput)     //work around
@@ -53,20 +56,20 @@ namespace HumaneSociety
             Console.WriteLine("Do you know " + petId + "'s date of birth? Enter yes or no.");
             if (userInput == "yes")
             {
-                Console.WriteLine("Enter " + petId + "'s date of birth. Use numbers, avoid blackslashes or other symbols.");
-                petBirthDate = Console.ReadLine();
+                Console.WriteLine("Enter " + petId + "'s date of birth. Use numbers, avoid backslashes or other symbols.");
+                petAge = Console.ReadLine();
             }
 
             else if (userInput == "no")
             {
-                Console.WriteLine("How old would you guess that " + petId + " is? Guess in years, months, or weeks accordingly.");
-                petBirthDate = Console.ReadLine();
+                Console.WriteLine("How old would you estimate that " + petId + " is? Estimate in years, months, or weeks accordingly.");
+                petAge = Console.ReadLine();
             }
             Console.WriteLine("Would " + petId + " make a good family pet? Enter yes, no, or with training.");
             familyPet = Console.ReadLine();
             Console.WriteLine("When was " + petId + " first brought to the humane society? Enter the month and year in the following format: 08/2017");
             acceptedDate = Console.ReadLine();
-            Console.WriteLine("On a scale of 1-10 with 1 being lazy all the time and 10 being endlessly hyper, how would you rate " + petId + "'s energy level?");
+            Console.WriteLine("On a scale of 1-10 with 1 being sleeping all the time and 10 being endlessly hyper, how would you rate " + petId + "'s energy level?");
             energyLevel = Console.ReadLine();
             Console.WriteLine("Describe " + petId + "'s behavior.");
             behaviorReport = Console.ReadLine();

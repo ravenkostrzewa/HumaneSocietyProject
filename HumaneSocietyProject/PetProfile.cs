@@ -14,7 +14,7 @@ namespace HumaneSociety
         public bool adoptionStatus;
         public string petName;
         public string breedColor;
-        public string petBirthDate;
+        public string petAge;
         public string familyPet;
         public string acceptedDate;
         public string energyLevel;

@@ -29,6 +29,7 @@ namespace HumaneSociety
         public bool adoptAPet;
         public bool adoptionStatus;
         public int adoptionFeeCollected;
+        public string employeeName;
 
         public void SearchAdopterId()
         {
@@ -41,7 +42,7 @@ namespace HumaneSociety
                 adopterId = userInput;
                 if (adopterId == userInput)
                 {
-                    Console.WriteLine("Would you like to view the pets? Enter 1 to view the pets, 2 to go to the main search menu, or 3 to exit.");
+                    Console.WriteLine("Would you like to view the pets? Enter 1 to view the pets, 2 to go to the main search menu, or 3 to leave the humane society.");
                     userInput = Console.ReadLine();
                     if (userInput == "1")
                     {
@@ -197,7 +198,7 @@ namespace HumaneSociety
             }
             else if (userInput != animal)
             {
-                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by animal again, 2 to return to the search menu, or 3 to exit.");
+                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by animal again, 2 to return to the search menu, or 3 to leave the humane society.");
                 userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
@@ -276,13 +277,39 @@ namespace HumaneSociety
 
         public void Adopt()
         {
-            Console.WriteLine("Would you like to adopt " + petId + "? Enter yes or no.");
+            Console.WriteLine(adopterName + ", would you like to adopt " + petName + "? Enter yes or no.");
             userInput = Console.ReadLine();
             if (userInput == "yes")
             {
-                adoptAPet = true;
-                adoptionStatus = true;
-                adoptionFeeCollected = adoptionFeeCollected + 200;
+                Console.WriteLine(employeeName + ", is this adoption in " + petName + "'s best interest? Enter yes to approve the adoption or no to deny it.");
+                userInput = Console.ReadLine();
+                if (userInput == "yes")
+                {
+                    adoptAPet = true;
+                    adoptionStatus = true;
+                    Console.WriteLine("Congratulations " + adopterName + "! The adoption has been approved!");
+                    adoptionFeeCollected = adoptionFeeCollected + 200;
+                }
+                else if (userInput == "no")
+                {
+                    adoptAPet = false;
+                    adoptionStatus = false;
+                    Console.WriteLine("Sorry" + adopterName + ". The adoption has been denied. Enter 1 to view other pets or 2 to leave the humane society.");
+                    userInput = Console.ReadLine();
+                    if (userInput == "1")
+                    {
+                        ViewPets();
+                    }
+                    else if (userInput == "2")
+                    {
+                        EndProgram();
+                    }
+                    else
+                    {
+                        Console.WriteLine("That is an invalid response.");
+                        ViewPets();
+                    }
+                }
             }
             else if (userInput == "no")
             {
