@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    public class PetProfile
+    class PetProfile
     {
         public string petId;
         public string animal;
-        public string roomNumber;
+        public int roomNumber = 101;
         public bool adoptionStatus;
         public string petName;
         public string breedColor;
@@ -23,6 +23,7 @@ namespace HumaneSociety
         public bool shots;
         public string diet;
         public string petNotes;
+        public bool employee;
 
     }
 }

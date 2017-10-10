@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    class Program
+    public class Program 
     {
-
         static void Main(string[] args)
         {
-
+            HumaneSociety humaneSociety = new HumaneSociety();
+            Employee employee = new Employee();
+            Adopter adopter = new Adopter();
+            humaneSociety.DetermineUser(adopter);
         }
     }
 }
