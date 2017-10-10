@@ -114,6 +114,8 @@ namespace HumaneSociety
                     else if (userInput == "no")
                     {
                         petsPermitted = false;
+                        Console.WriteLine("Sorry, you are not a good fit for any of the pets if they are prohibitted from your home.");
+                        EndProgram(adopter, adopters);
                     }
                 }
             } 
