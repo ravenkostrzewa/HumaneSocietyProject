@@ -48,7 +48,7 @@ namespace HumaneSociety
             }
             else if (userInput == "4")
             {
-                SearchAdopterId();
+                SearchAdopterId(Adopter);
             }
             else
             {
@@ -140,7 +140,7 @@ namespace HumaneSociety
                 else if (userInput == "3")
 
                 {
-                    EndProgram();
+                    EndProgram(Adopter);
                 }
                 else
                 {
@@ -193,7 +193,7 @@ namespace HumaneSociety
                     }
                     else if (userInput == "3")
                     {
-                        EndProgram();
+                        EndProgram(Adopter);
                     }
                     else
                     {
@@ -201,11 +201,6 @@ namespace HumaneSociety
                     }
                 }
             }
-        }
-
-        public void EndProgram()
-        {
-            Console.WriteLine("Have a nice day! Goodbye!");
         }
     }
 }

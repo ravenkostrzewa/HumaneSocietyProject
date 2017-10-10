@@ -48,28 +48,16 @@ namespace HumaneSociety
             if (userInput == "yes")
             {
                 Console.WriteLine("Enter your ID number.");
+                adopterId = Console.ReadLine();
+                Console.WriteLine("Would you like to look at the pets? Enter 1 to view the pets or 2 to leave the humane society.");
                 userInput = Console.ReadLine();
-                adopterId = userInput;
-                if (adopterId == userInput)
+                if (userInput == "1")
                 {
-                    Console.WriteLine("Would you like to view the pets? Enter 1 to view the pets, 2 to go to the main search menu, or 3 to leave the humane society.");
-                    userInput = Console.ReadLine();
-                    if (userInput == "1")
-                    {
-                        ViewPets();
-                    }
-                    else if (userInput == "2")
-                    {
-                        SearchMenu();
-                    }
-                    else if (userInput == "3")
-                    {
-                        EndProgram();
-                    }
+                    SearchMenu();
                 }
-                else if (userInput == "no")
+                else if (userInput == "2")
                 {
-                    CompleteApplication();
+                    EndProgram();
                 }
                 else
                 {
@@ -77,7 +65,17 @@ namespace HumaneSociety
                     SearchAdopterId();
                 }
             }
+            else if (userInput == "no")
+            {
+                CompleteApplication();
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that is an invalid response.");
+                SearchAdopterId();
+            }
         }
+            
 
         public void CompleteApplication()
         {
@@ -91,14 +89,30 @@ namespace HumaneSociety
             residenceType = Console.ReadLine();
             Console.WriteLine("Are you allowed to have pets there? Enter yes or no.");
             userInput = Console.ReadLine();
-                if (userInput == "yes")
+            if (userInput == "yes")
+            {
+                petsPermitted = true;
+            }
+            else if (userInput == "no")
+            {
+                petsPermitted = false;
+            }
+            else
+            {
+                while (userInput != "yes" && userInput != "no")
                 {
-                    petsPermitted = true;
+                    Console.WriteLine("Sorry, that is an invalid response. Are you allowed to have pets there? Enter yes or no.");
+                    userInput = Console.ReadLine();
+                    if (userInput == "yes")
+                    {
+                        petsPermitted = true;
+                    }
+                    else if (userInput == "no")
+                    {
+                        petsPermitted = false;
+                    }
                 }
-                else if (userInput == "no")
-                {
-                    petsPermitted = false;
-                }   
+            } 
             Console.WriteLine("What is your street address?");
             streetAddress = Console.ReadLine();
             Console.WriteLine("What city and state do you live in? Enter them in the following format: City, State");
@@ -107,38 +121,37 @@ namespace HumaneSociety
             zipCode = Int32.Parse(Console.ReadLine());
             Console.WriteLine("Are there any children living with you? Enter yes or no.");
             userInput = Console.ReadLine();
-                if (userInput == "yes")
+            if (userInput == "yes")
+            {
+                children = true;
+            }
+            else if (userInput == "no")
+            {
+                children = false;
+            }
+            else
+            {
+                while (userInput != "yes" && userInput != "no")
                 {
-                    children = true;
+                    Console.WriteLine("Sorry, that is an invalid response. Are there any children living with you? Enter yes or no.");
+                    userInput = Console.ReadLine();
+                    if (userInput == "yes")
+                    {
+                        children = true;
+                    }
+                    else if (userInput == "no")
+                    {
+                        children = false;
+                    }
                 }
-                else if (userInput == "no")
-                {
-                    children = false;
-                }
+            }
             Console.WriteLine("What is your occupation?");
             occupation = Console.ReadLine();
             Console.WriteLine("How many hours are you home per day?");
             hoursHomePerDay = Int32.Parse(Console.ReadLine());
             Console.WriteLine("Notes: ");
             adopterNotes = Console.ReadLine();
-        }
-
-        public void ViewPets()
-        {
-            Console.WriteLine("Would you like to search for a pet by its ID number? Enter yes or no.");
-            if (userInput == "yes")
-            {
-                SearchByID();
-            }
-            else if (userInput == "no")
-            {
-                SearchMenu();
-            }
-            else if (userInput != "yes" && userInput != "no")
-            {
-                Console.WriteLine("Sorry, that is an invalid response.");
-                ViewPets();
-            }
+            SearchMenu();
         }
 
         public void SearchMenu()
@@ -165,6 +178,11 @@ namespace HumaneSociety
             {
                 EndProgram();
             }
+            else
+            {
+                Console.WriteLine("Sorry, that is an invalid response.");
+                SearchMenu();
+            }
         }
 
         public void SearchByID()
@@ -173,25 +191,31 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == petId)
             {
-                Console.WriteLine("Your search returned the following: Species: " + animal + " Name: " + petName + " Adoption Status: " + adoptionStatus + " Gender: " + petGender + " Breed/Color: " + breedColor + " Age: " + petAge + " Room Number: " + roomNumber + " Energy Level: " + energyLevel + " Behavior Report: " + behaviorReport + " Shots: " + shots + " Diet: " + diet + " Notes: " + petNotes + " At the Humane Society Since: " + acceptedDate); 
+                Console.WriteLine("Your search returned the following: Species: " + animal + " Name: " + petName + " Adoption Status: " + adoptionStatus + " Gender: " + petGender + " Breed/Color: " + breedColor + " Age: " + petAge + " Room Number: " + roomNumber + " Energy Level: " + energyLevel + " Behavior Report: " + behaviorReport + " Shots: " + shots + " Diet: " + diet + " Notes: " + petNotes + " At the Humane Society Since: " + acceptedDate);
                 Adopt();
             }
             else if (userInput != petId)
             {
-                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by ID again, 2 to return to the search main menu, or 3 to exit.");
+                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to look at the pets or 2 to leave the humane society.");
                 userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
-                    SearchByAnimal();
+                    SearchMenu();
                 }
                 else if (userInput == "2")
                 {
-                    SearchMenu();
-                }
-                else if (userInput == "3")
-                {
                     EndProgram();
                 }
+                else
+                {
+                    Console.WriteLine("Sorry, that is an invalid response.");
+                    SearchByID();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that is an invalid response.");
+                SearchByID();
             }
         }
 
@@ -201,12 +225,12 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == animal)
             {
-                Console.WriteLine("Your search returned the following: Type of Animal: " + animal + "Breed/Color: " + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
+                Console.WriteLine("Your search returned the following: Species: " + animal + "Breed/Color: " + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
                 SearchByID();
             }
             else if (userInput != animal)
             {
-                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by species again, 2 to return to the search menu, or 3 to leave the humane society.");
+                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by species again, 2 to look at the pets, or 3 to leave the humane society.");
                 userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
@@ -220,6 +244,16 @@ namespace HumaneSociety
                 {
                     EndProgram();
                 }
+                else
+                {
+                    Console.WriteLine("Sorry, that is an invalid response.");
+                    SearchByAnimal();
+                }
+            }
+            else
+            {
+                Console.WriteLine("Sorry, that is an invalid response.");
+                SearchByAnimal();
             }
         }
 
@@ -234,7 +268,7 @@ namespace HumaneSociety
             }
             else if (userInput != breedColor)
             {
-                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by breed or color again, 2 to return to the search menu, or 3 to exit.");
+                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by breed or color again, 2 to look at the pets, or 3 to leave the humane society.");
                 userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
@@ -266,7 +300,7 @@ namespace HumaneSociety
             }
             else if (userInput != petName)
             {
-                Console.WriteLine("Sorry, your search did you return any results. Enter 1 to search by name again, 2 to return the search menu, or 3 to exit.");
+                Console.WriteLine("Sorry, your search did you return any results. Enter 1 to search by name again, 2 to look at the pets, or 3 to leave the humane society.");
                 userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
@@ -280,12 +314,17 @@ namespace HumaneSociety
                 {
                     EndProgram();
                 }
+                else
+                {
+                    Console.WriteLine("Sorry, that is an invalid response.");
+                    SearchMenu();
+                }
             }
         }
 
         public void Adopt()
         {
-            Console.WriteLine(adopterName + ", would you like to adopt " + petName + "? Enter yes or no.");
+            Console.WriteLine(adopterName + ", would you like to adopt " + petName + " for $200? Enter yes or no.");
             userInput = Console.ReadLine();
             if (userInput == "yes")
             {
@@ -302,11 +341,11 @@ namespace HumaneSociety
                 {
                     adoptAPet = false;
                     adoptionStatus = false;
-                    Console.WriteLine("Sorry" + adopterName + ". The adoption has been denied. Enter 1 to view other pets or 2 to leave the humane society.");
+                    Console.WriteLine("Sorry" + adopterName + ". The adoption has been denied. Enter 1 to look at other pets or 2 to leave the humane society.");
                     userInput = Console.ReadLine();
                     if (userInput == "1")
                     {
-                        ViewPets();
+                        SearchMenu();
                     }
                     else if (userInput == "2")
                     {
@@ -314,8 +353,8 @@ namespace HumaneSociety
                     }
                     else
                     {
-                        Console.WriteLine("That is an invalid response.");
-                        ViewPets();
+                        Console.WriteLine("Sorry, that is an invalid response.");
+                        SearchMenu();
                     }
                 }
             }
@@ -323,7 +362,7 @@ namespace HumaneSociety
             {
                 adoptAPet = false;
                 adoptionStatus = false;
-                ViewPets();
+                SearchMenu();
             }
             else
             {
@@ -333,7 +372,7 @@ namespace HumaneSociety
 
         public void EndProgram()
         {
-            Console.WriteLine("Thank you for visiting the humane society!");
+            Console.WriteLine("Have a great day! Goodbye!");
         }
     }
 }
