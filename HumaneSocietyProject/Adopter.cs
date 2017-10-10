@@ -6,26 +6,36 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    class Adopter
+    public class Adopter
     {
         public string adopterName;
         public string adopterId;
         public string adopterBirthDate;
-        public string phoneNumber;
+        public int phoneNumber;
         public string residenceType;
         public bool petsPermitted;
         public string userInput;
         public string streetAddress;
         public string cityState;
-        public string zipCode;
+        public int zipCode;
         public string occupation;
-        public string hoursHomePerDay;
+        public int hoursHomePerDay;
         public bool children;
         public string adopterNotes;
         public string petId;
+        public string petGender;
         public string animal;
         public string breedColor;
         public string petName;
+        public string energyLevel;
+        public string behaviorReport;
+        public string acceptedDate;
+        public string petNotes;
+        public string petAge;
+        public string familyPet;
+        public string diet;
+        public bool shots;
+        public string roomNumber;
         public bool adoptAPet;
         public bool adoptionStatus;
         public int adoptionFeeCollected;
@@ -33,7 +43,7 @@ namespace HumaneSociety
 
         public void SearchAdopterId()
         {
-            Console.WriteLine("Do you have an ID number? Enter yes or no.");
+            Console.WriteLine("Potential adopter, do you have an ID number? Enter yes or no.");
             userInput = Console.ReadLine();
             if (userInput == "yes")
             {
@@ -74,11 +84,9 @@ namespace HumaneSociety
             Console.WriteLine("Thank you for your interest in adopting a new pet! What is your name?");
             adopterName = Console.ReadLine();
             Console.WriteLine("What is your date of birth? Enter your birthdate using numbers, not backslashes or other symbols.");
-            //check for all numbers
             adopterBirthDate = Console.ReadLine();
             Console.WriteLine("Enter your phone number using numbers, omit dashes or other symbols.");
-            //check for all numbers
-            phoneNumber = Console.ReadLine();
+            phoneNumber = Int32.Parse(Console.ReadLine());
             Console.WriteLine("Do you live in a house, apartment, condo, or studio? Enter other if you do not reside in one of those residence types and specify your residence type.");
             residenceType = Console.ReadLine();
             Console.WriteLine("Are you allowed to have pets there? Enter yes or no.");
@@ -96,7 +104,7 @@ namespace HumaneSociety
             Console.WriteLine("What city and state do you live in? Enter them in the following format: City, State");
             cityState = Console.ReadLine();
             Console.WriteLine("What is your zip code?");
-            zipCode = Console.ReadLine();
+            zipCode = Int32.Parse(Console.ReadLine());
             Console.WriteLine("Are there any children living with you? Enter yes or no.");
             userInput = Console.ReadLine();
                 if (userInput == "yes")
@@ -110,7 +118,7 @@ namespace HumaneSociety
             Console.WriteLine("What is your occupation?");
             occupation = Console.ReadLine();
             Console.WriteLine("How many hours are you home per day?");
-            hoursHomePerDay = Console.ReadLine(); //should this be an int?
+            hoursHomePerDay = Int32.Parse(Console.ReadLine());
             Console.WriteLine("Notes: ");
             adopterNotes = Console.ReadLine();
         }
@@ -135,7 +143,7 @@ namespace HumaneSociety
 
         public void SearchMenu()
         {
-            Console.WriteLine("Would you like to search for your new pet by ID number, name, type of animal, or breed/color? Enter 1 to search by ID number, 2 to search by name, 3 to search by the type of animal, 4 to search by the breed/color, or 5 to exit.");
+            Console.WriteLine("Would you like to search for your new pet by ID number, name, species, or breed/color? Enter 1 to search by ID number, 2 to search by name, 3 to search by species, 4 to search by the breed/color, or 5 to leave the humane society.");
             userInput = Console.ReadLine();
             if (userInput == "1")
             {
@@ -165,7 +173,7 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == petId)
             {
-                Console.WriteLine("Your search returned the following: "); //show all information"
+                Console.WriteLine("Your search returned the following: Species: " + animal + " Name: " + petName + " Adoption Status: " + adoptionStatus + " Gender: " + petGender + " Breed/Color: " + breedColor + " Age: " + petAge + " Room Number: " + roomNumber + " Energy Level: " + energyLevel + " Behavior Report: " + behaviorReport + " Shots: " + shots + " Diet: " + diet + " Notes: " + petNotes + " At the Humane Society Since: " + acceptedDate); 
                 Adopt();
             }
             else if (userInput != petId)
@@ -198,7 +206,7 @@ namespace HumaneSociety
             }
             else if (userInput != animal)
             {
-                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by animal again, 2 to return to the search menu, or 3 to leave the humane society.");
+                Console.WriteLine("Sorry, your search did not return any results. Enter 1 to search by species again, 2 to return to the search menu, or 3 to leave the humane society.");
                 userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
@@ -221,7 +229,7 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == breedColor)
             {
-                Console.WriteLine("Your search returned the following: Type of Animal: " + animal + "Breed/Color: " + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
+                Console.WriteLine("Your search returned the following: Species: " + animal + "Breed/Color: " + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
                 SearchByID();
             }
             else if (userInput != breedColor)
@@ -253,7 +261,7 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == petName)
             {
-                Console.WriteLine("Your search returned the following: Type of Animal: " + animal + "Breed/Color:" + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
+                Console.WriteLine("Your search returned the following: Species: " + animal + "Breed/Color:" + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
                 SearchByID();
             }
             else if (userInput != petName)

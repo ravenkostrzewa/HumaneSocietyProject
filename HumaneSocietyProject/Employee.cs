@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HumaneSociety
 {
-    class Employee
+    public class Employee
     {
         public string employeeName;
         public int collectedAdoptionFee;
@@ -27,18 +27,44 @@ namespace HumaneSociety
         public string diet;
         public string petNotes;
 
+
+        public void EmployeeWork()
+        {
+            Console.WriteLine("Valued employee, welcome to work! Enter your name to clock in.");
+            employeeName = Console.ReadLine();
+            Console.WriteLine("What is your next task? Enter 1 to create a new pet profile, 2 to see if a pet has been adopted yet, 3 to see if a pet has had its shots, or 4 to assist a customer.");
+            userInput = Console.ReadLine();
+            if (userInput == "1")
+            {
+                CreateNewPetProfile();
+            }
+            else if (userInput == "2")
+            {
+                CheckAdoptionStatus();
+            }
+            else if (userInput == "3")
+            {
+                CheckShotStatus();
+            }
+            else if (userInput == "4")
+            {
+                SearchAdopterId();
+            }
+            else
+            {
+                EmployeeWork();
+            }
+        }
+
         public void CreateNewPetProfile()
         {
-            Console.WriteLine("Employee, what is your name?");
-            employeeName = Console.ReadLine();
-            Console.WriteLine(employeeName + ", create a unique ID number for the new pet. You can use letters and/or numbers."); //check for uniqueness
-            userInput = Console.ReadLine();     //work around
-            userInput = petId;      //work around
-                if (petId == userInput)     //work around
-                {
-                    Console.WriteLine("What is " + petId + "'s name?");
-                    petName = Console.ReadLine();
-                }
+            Console.WriteLine("Create a unique ID number for the new pet. You can use letters and/or numbers.");
+            userInput = Console.ReadLine();
+            //check for unique id
+            //if (userInput = petId)
+
+
+
             adoptionStatus = false;
             Console.WriteLine("What kind of animal is this? (Eg. dog, cat, lizard, bird)");
             animal = Console.ReadLine();
@@ -81,6 +107,7 @@ namespace HumaneSociety
             diet = Console.ReadLine();
             Console.WriteLine("Notes:");
             petNotes = Console.ReadLine();
+            EmployeeWork();
         }
 
         public void CheckAdoptionStatus()
@@ -89,35 +116,43 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == petId)
             {
-                if (userInput == "yes")
+                if (adoptionStatus == true)
                 {
-                    adoptionStatus = true;
-                    Console.WriteLine(petId + " has been adopted!");
+                    Console.WriteLine(petId + " has already been adopted!");
                 }
-                else if (userInput == "no")
+                else if (adoptionStatus == false)
                 {
-                    adoptionStatus = false;
                     Console.WriteLine(petId + " has not been adopted yet.");
                 }
             }
             else if (userInput != petId)
             {
-                Console.WriteLine("Sorry, that ID does not belong to any of the pets in the database. Enter search to try searching again or exit to exit the search.");
+                Console.WriteLine("Sorry, that ID does not belong to any of the pets in the database. Enter 1 to try searching again, 2 to move on to a different task, or 3 to clock out.");
                 userInput = Console.ReadLine();
-                if (userInput == "search")
+                if (userInput == "1")
                 {
                     CheckAdoptionStatus();
                 }
-                else if (userInput == "exit")
+                else if (userInput == "2")
+                {
+                    EmployeeWork();
+                }
+                else if (userInput == "3")
+
                 {
                     EndProgram();
+                }
+                else
+                {
+                    Console.WriteLine("Sorry, that is an invalid response.");
+                    CheckAdoptionStatus();
                 }
             }
         }
 
         public void CheckShotStatus()
         {
-            Console.WriteLine("Enter the ID of the pet for which you would like to check the shot status.");
+            Console.WriteLine("To check to see if a pet has had its shots yet, enter its ID number.");
             userInput = Console.ReadLine();
             if (petId == userInput)
             {
@@ -127,27 +162,50 @@ namespace HumaneSociety
                 }
                 else if (shots == false)
                 {
-                    Console.WriteLine(petId + " has not had its shots yet.");
+                    Console.WriteLine(petId + " has not had its shots yet. Would you like to take it to the veterinarian so that it can have its shots? Enter yes or no.");
+                    userInput = Console.ReadLine();
+                    if (userInput == "yes")
+                    {
+                        shots = true;
+                        Console.WriteLine(petId + " got its shots. Great work!");
+                    }
+                    else if (userInput == "no")
+                    {
+                        shots = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry, that is an invalid response.");
+                        CheckShotStatus();
+                    }
                 }
                 else if (petId != userInput)
                 {
-                    Console.WriteLine("Sorry, that ID does not belong to any of the pets in the database. Enter search to try searching again or exit to exit the search.");
+                    Console.WriteLine("Sorry, that ID does not belong to any of the pets in the database. Enter 1 to try searching again, 2 to move on to a different task, or 3 to clock out.");
                     userInput = Console.ReadLine();
-                    if (userInput == "search")
+                    if (userInput == "1")
                     {
                         CheckShotStatus();
                     }
-                    else if (userInput == "exit")
+                    else if (userInput == "2")
+                    {
+                        EmployeeWork();
+                    }
+                    else if (userInput == "3")
                     {
                         EndProgram();
                     }
+                    else
+                    {
+                        CheckShotStatus();
+                    }
                 }
             }
-        }           
-               
-            public void EndProgram()
+        }
+
+        public void EndProgram()
         {
-            Console.WriteLine("Thank you for visiting the humane society!");
+            Console.WriteLine("Have a nice day! Goodbye!");
         }
     }
 }
