@@ -12,6 +12,8 @@ namespace HumaneSociety
         public string employed;
         public string customer;
         public bool employee;
+        public string employeeName;
+        public string adopterName;
         public string name;
         Employee worker = new Employee();
 
@@ -25,13 +27,13 @@ namespace HumaneSociety
             userInput = Console.ReadLine();
             if (userInput == "1")
             {
-                userInput = employed;
+                employeeName = name;
                 employee = true;
                 worker.EmployeeWork(adopter, adopterList);
             }
             else if (userInput == "2")
             {
-                userInput = customer;
+                adopterName = name;
                 employee = false;
                 adopter.GetAdopterId(adopter, adopterList);
             }

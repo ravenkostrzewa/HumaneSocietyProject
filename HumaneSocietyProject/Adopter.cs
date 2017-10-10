@@ -39,14 +39,15 @@ namespace HumaneSociety
         public bool adoptAPet;
         public bool adoptionStatus;
         public int adoptionFeeCollected;
-        public string name;
+        public string employeeName;
         public string employed;
         public string customer;
         
         public void GetAdopterId(Adopter adopter, List<Adopter>adopters)
         {
-            Console.WriteLine(name + ", do you have an ID number? Enter yes or no.");
+            Console.WriteLine(adopterName + ", do you have an ID number? Enter yes or no.");
             userInput = Console.ReadLine();
+            userInput.ToLower();
             if (userInput == "yes")
             {
                 Console.WriteLine("Enter your ID number.");
@@ -82,7 +83,7 @@ namespace HumaneSociety
         {
             Console.WriteLine("Thank you for your interest in adopting a new pet! What is your name?");
             adopterName = Console.ReadLine();
-            Console.WriteLine("What is your date of birth? Enter your birthdate using numbers, not backslashes or other symbols.");
+            Console.WriteLine("What is your date of birth? Enter your birthdate using numbers, omit backslashes or other symbols.");
             adopterBirthDate = Console.ReadLine();
             Console.WriteLine("Enter your phone number using numbers, omit dashes or other symbols.");
             phoneNumber = Int32.Parse(Console.ReadLine());
@@ -90,6 +91,7 @@ namespace HumaneSociety
             residenceType = Console.ReadLine();
             Console.WriteLine("Are you allowed to have pets there? Enter yes or no.");
             userInput = Console.ReadLine();
+            userInput.ToLower();
             if (userInput == "yes")
             {
                 petsPermitted = true;
@@ -104,6 +106,7 @@ namespace HumaneSociety
                 {
                     Console.WriteLine("Sorry, that is an invalid response. Are you allowed to have pets there? Enter yes or no.");
                     userInput = Console.ReadLine();
+                    userInput.ToLower();
                     if (userInput == "yes")
                     {
                         petsPermitted = true;
@@ -122,6 +125,7 @@ namespace HumaneSociety
             zipCode = Int32.Parse(Console.ReadLine());
             Console.WriteLine("Are there any children living with you? Enter yes or no.");
             userInput = Console.ReadLine();
+            userInput.ToLower();
             if (userInput == "yes")
             {
                 children = true;
@@ -136,6 +140,7 @@ namespace HumaneSociety
                 {
                     Console.WriteLine("Sorry, that is an invalid response. Are there any children living with you? Enter yes or no.");
                     userInput = Console.ReadLine();
+                    userInput.ToLower();
                     if (userInput == "yes")
                     {
                         children = true;
@@ -224,6 +229,7 @@ namespace HumaneSociety
         {
             Console.WriteLine("What kind of animal are you searching for? (Eg. dog, cat, lizard, bird");
             userInput = Console.ReadLine();
+            userInput.ToLower();
             if (userInput == animal)
             {
                 Console.WriteLine("Your search returned the following: Species: " + animal + "Breed/Color: " + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
@@ -262,6 +268,7 @@ namespace HumaneSociety
         {
             Console.WriteLine("What is the breed or color of the pet for which you are searching? Enter either the breed or the color.");
             userInput = Console.ReadLine();
+            userInput.ToLower();
             if (userInput == breedColor)
             {
                 Console.WriteLine("Your search returned the following: Species: " + animal + "Breed/Color: " + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
@@ -294,6 +301,7 @@ namespace HumaneSociety
         {
             Console.WriteLine("What is the name of the pet for which you are searching?");
             userInput = Console.ReadLine();
+            userInput.ToLower();
             if (userInput == petName)
             {
                 Console.WriteLine("Your search returned the following: Species: " + animal + "Breed/Color:" + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
@@ -327,10 +335,12 @@ namespace HumaneSociety
         {
             Console.WriteLine(adopterName + ", would you like to adopt " + petName + " for $200? Enter yes or no.");
             userInput = Console.ReadLine();
+            userInput.ToLower();
             if (userInput == "yes")
             {
-                Console.WriteLine(name + ", is this adoption in " + petName + "'s best interest? Enter yes to approve the adoption or no to deny it.");
+                Console.WriteLine(employeeName + ", is this adoption in " + petName + "'s best interest? Enter yes to approve the adoption or no to deny it.");
                 userInput = Console.ReadLine();
+                userInput.ToLower();
                 if (userInput == "yes")
                 {
                     adoptAPet = true;
