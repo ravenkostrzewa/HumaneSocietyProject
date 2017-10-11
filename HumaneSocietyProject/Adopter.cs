@@ -10,14 +10,13 @@ namespace HumaneSociety
     {
         public string adopterName;
         public int adopterId = 100000;
-        public string adopterBirthDate;
-        public string phoneNumber;
+        public string adopterBirthMonth;
+        public int adopterBirthYear;
+        public int phoneNumber;
         public string residenceType;
         public bool petsPermitted;
         public string userInput;
-        public string streetAddress;
         public string cityState;
-        public string zipCode;
         public string occupation;
         public int hoursHomePerDay;
         public bool children;
@@ -82,12 +81,60 @@ namespace HumaneSociety
 
         public void CompleteApplication(Adopter adopter, List<Adopter>adopters)
         {
-            Console.WriteLine(adopterName + ", thank you for your interest in adopting a new pet! What is your date of birth? Enter your birthdate in the following format: 01/01/2000.");
-            adopterBirthDate = Console.ReadLine();
-            Console.WriteLine("Enter your phone number in the following format: 555-555-5555");
-            phoneNumber = Console.ReadLine();
-            Console.WriteLine("Do you live in a house, apartment, condo, or studio? Enter other if you do not reside in one of those residence types and specify your residence type.");
+            Console.WriteLine(adopterName + ", thank you for your interest in adopting a new pet! What is your date of birth? Enter your month of birth.");
+            adopterBirthMonth = Console.ReadLine().ToLower();
+            while (adopterBirthMonth != "january" && adopterBirthMonth != "february" && adopterBirthMonth != "march" && adopterBirthMonth != "april" && adopterBirthMonth != "may" && adopterBirthMonth != "june" && adopterBirthMonth != "july" && adopterBirthMonth != "august" && adopterBirthMonth != "september" && adopterBirthMonth != "october" && adopterBirthMonth != "november" && adopterBirthMonth != "december") ;
+            {
+                Console.WriteLine("What month were you born?");
+                adopterBirthMonth = Console.ReadLine();
+            }
+            Console.WriteLine("What year were you born?");
+            adopterBirthYear = Int32.Parse(Console.ReadLine());
+            if (adopterBirthYear < 1920 && adopterBirthYear > 2017)
+            {
+                while (adopterBirthYear < 1920 && adopterBirthYear > 2017)
+                {
+                    Console.WriteLine("That can't be right. Please enter your year of birth.");
+                    adopterBirthYear = Int32.Parse(Console.ReadLine());
+                }
+            }
+            else if (adopterBirthYear > 1999)
+            {
+                Console.WriteLine("Sorry, you must be 18 years or older to adopt a pet.");
+                EndProgram(adopter, adopters);
+            }
+            Console.WriteLine("Enter your phone number. Exclude dashes or other symbols or letters. Include your area code. Eg. 1234567890");
+            phoneNumber = Int32.Parse(Console.ReadLine());
+            if (phoneNumber <= 1000000000 && phoneNumber - 9999999999 >= 1)
+            {
+                {
+                    while (phoneNumber <= 1000000000 && phoneNumber - 9999999999 >= 1)
+                    Console.WriteLine("Sorry, that is an invalid phone number. Enter your phone number. Exclude dashes or other symbols or letters.Include your area code. Eg. 1234567890");
+                    phoneNumber = Int32.Parse(Console.ReadLine());
+                }
+            }
+            Console.WriteLine("Do you live in a house, apartment, condo, or studio? Enter other if you do not reside in one of those residence types.");
             residenceType = Console.ReadLine();
+            residenceType.ToLower();
+            if (residenceType == "other")
+            {
+                Console.WriteLine("Describe your home.");
+                residenceType = Console.ReadLine();
+            }
+            else if (residenceType != "house" && residenceType != "apartment" && residenceType != "condo" && residenceType != "other")
+            {
+                while (residenceType != "house" && residenceType != "apartment" && residenceType != "condo" && residenceType != "other")
+                {
+                    Console.WriteLine("Sorry, that is an invalid response. Do you live in a house, apartment, condo, or studio? Enter other if you do not reside in one of those residence types and specify your residence type.");
+                    residenceType = Console.ReadLine();
+                    residenceType.ToLower();
+                }
+                if (residenceType == "other")
+                {
+                    Console.WriteLine("Describe your home.");
+                    residenceType = Console.ReadLine();
+                }
+            }
             Console.WriteLine("Are you allowed to have pets there? Enter yes or no.");
             userInput = Console.ReadLine().ToLower();
             if (userInput == "yes")
@@ -118,12 +165,8 @@ namespace HumaneSociety
                     }
                 }
             } 
-            Console.WriteLine("What is your street address?");
-            streetAddress = Console.ReadLine();
             Console.WriteLine("What city and state do you live in? Enter them in the following format: City, State");
             cityState = Console.ReadLine();
-            Console.WriteLine("What is your zip code?");
-            zipCode = Console.ReadLine();
             Console.WriteLine("Are there any children living with you? Enter yes or no.");
             userInput = Console.ReadLine().ToLower();
             if (userInput == "yes")
@@ -159,7 +202,7 @@ namespace HumaneSociety
                 Console.WriteLine(hoursHomePerDay + "?! That's impossible. Really though, how many hours are you home per day?");
                 hoursHomePerDay = Int32.Parse(Console.ReadLine());
             }
-            Console.WriteLine("Enter any other information you would like to share about yourself and your lifestyle. Notes: ");
+            Console.WriteLine("Enter any other information you would like to share about yourself and your lifestyle and if there are any other animals living at your home. Notes: ");
             adopterNotes = Console.ReadLine();
             adopterId = adopterId + 1;
             SearchMenu(adopter, adopters);
@@ -272,8 +315,7 @@ namespace HumaneSociety
         public void SearchByBreedColor(Adopter adopter, List<Adopter>adopters)
         {
             Console.WriteLine("What is the breed or color of the pet for which you are searching? Enter either the breed or the color.");
-            userInput = Console.ReadLine();
-            userInput.ToLower();
+            userInput = Console.ReadLine().ToLower();
             if (userInput == breedColor)
             {
                 Console.WriteLine("Your search returned the following: Species: " + animal + "Breed/Color: " + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
@@ -305,8 +347,7 @@ namespace HumaneSociety
         public void SearchByName(Adopter adopter, List<Adopter>adopters)
         {
             Console.WriteLine("What is the name of the pet for which you are searching?");
-            userInput = Console.ReadLine();
-            userInput.ToLower();
+            userInput = Console.ReadLine().ToLower();
             if (userInput == petName)
             {
                 Console.WriteLine("Your search returned the following: Species: " + animal + "Breed/Color:" + breedColor + " Name: " + petName + " ID: " + petId + " You can see the full profile of a pet by searching its ID number.");
@@ -339,13 +380,11 @@ namespace HumaneSociety
         public void Adopt(Adopter adopter, List<Adopter>adopters)
         {
             Console.WriteLine(adopterName + ", would you like to adopt " + petName + " for $200? Enter yes or no.");
-            userInput = Console.ReadLine();
-            userInput.ToLower();
+            userInput = Console.ReadLine().ToLower();
             if (userInput == "yes")
             {
                 Console.WriteLine(employeeName + ", is this adoption in " + petName + "'s best interest? Enter yes to approve the adoption or no to deny it.");
-                userInput = Console.ReadLine();
-                userInput.ToLower();
+                userInput = Console.ReadLine().ToLower();
                 if (userInput == "yes")
                 {
                     adoptAPet = true;

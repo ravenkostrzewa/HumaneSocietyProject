@@ -21,7 +21,6 @@ namespace HumaneSociety
         public string petGender;
         public string petAge;
         public string familyPet;
-        public string acceptedDate;
         public string energyLevel;
         public string behaviorReport;
         public bool shots;
@@ -35,7 +34,7 @@ namespace HumaneSociety
 
         public void EmployeeWork(Adopter adopter, List<Adopter>adopters)
         {
-            Console.WriteLine("What is your next task? Enter 1 to create a new pet profile, 2 to see if a pet has been adopted yet, 3 to see if a pet has had its shots, or 4 to assist a customer.");
+            Console.WriteLine("Welcome to work! What is your next task? Enter 1 to create a new pet profile, 2 to see if a pet has been adopted yet, 3 to see if a pet has had its shots, or 4 to assist a customer.");
             userInput = Console.ReadLine();
             if (userInput == "1")
             {
@@ -64,18 +63,15 @@ namespace HumaneSociety
             //petId is created automatically since it is the primary key
             adoptionStatus = false;
             Console.WriteLine("What kind of animal is this? (Eg. dog, cat, lizard, bird)");
-            animal = Console.ReadLine();
-            animal.ToLower();
+            animal = Console.ReadLine().ToLower();
             Console.WriteLine("What is the " + animal + "'s name?");
             petName = Console.ReadLine();
             roomNumber = roomNumber + 1;
             Console.WriteLine("Room " + roomNumber + " has been prepared for " + petName + "!");
             Console.WriteLine("What breed or color is " + petName + "?");
-            breedColor = Console.ReadLine();
-            breedColor.ToLower();
+            breedColor = Console.ReadLine().ToLower();
             Console.WriteLine("What gender is " + petName + "? Enter male or female.");
-            userInput = Console.ReadLine();
-            userInput.ToLower();
+            userInput = Console.ReadLine().ToLower();
             if (userInput == "male")
             {
                 petGender = "male";
@@ -88,8 +84,8 @@ namespace HumaneSociety
             {
                 while (userInput != "male" && userInput != "female")
                 {
-                    Console.WriteLine("What gender is " + petName + "? Enter male or female.");
-                    userInput = Console.ReadLine();
+                    Console.WriteLine("Sorry, that is an invalid response. What gender is " + petName + "? Enter male or female.");
+                    userInput = Console.ReadLine().ToLower();
                     if (userInput == "male")
                     {
                         petGender = "male";
@@ -100,14 +96,11 @@ namespace HumaneSociety
                     }
                 }
             }
-            Console.WriteLine("When was " + petName + " first brought to the humane society? Enter the month and year in the following format: 08/2017");
-            acceptedDate = Console.ReadLine();
-            Console.WriteLine("Do you know " + petName + "'s date of birth? Enter yes or no.");
-            userInput = Console.ReadLine();
-            userInput.ToLower();
+            Console.WriteLine("Do you know " + petName + "'s age? Enter yes or no.");
+            userInput = Console.ReadLine().ToLower();
             if (userInput == "yes")
             {
-                Console.WriteLine("Enter " + petName + "'s date of birth. Use numbers, avoid backslashes or other symbols.");
+                Console.WriteLine("Enter " + petName + "'s age in years, months, or weeks accordingly.");
                 petAge = Console.ReadLine();
             }
             else if (userInput == "no")
@@ -119,7 +112,8 @@ namespace HumaneSociety
             {
                 while (userInput != "yes" && userInput != "no")
                     {
-                    Console.WriteLine("Do you know " + petName + "'s date of birth?");
+                    Console.WriteLine("Sorry, that is an invalid response. Do you know " + petName + "'s date of birth?");
+                    userInput = Console.ReadLine().ToLower();
                     if (userInput == "yes")
                     {
                         Console.WriteLine("Enter " + petName + "'s date of birth. Use numbers, avoid backslashes or other symbols.");
@@ -132,16 +126,20 @@ namespace HumaneSociety
                     }
                 }
             }
-            Console.WriteLine("Would " + petName + " make a good family pet? Enter yes, no, or, if you think it has potential, enter with training.");
-            familyPet = Console.ReadLine();
-            familyPet.ToLower();
+            Console.WriteLine("Would " + petName + " make a good family pet? Enter yes, no, or, if you think " + petName + " has family-friendly potential, enter with training.");
+            familyPet = Console.ReadLine().ToLower();
+            if (familyPet != "yes" && familyPet != "no" && familyPet != "with training")
+                while (familyPet != "yes" && familyPet != "no" && familyPet != "with training")
+                {
+                    Console.WriteLine("Sorry, that is an invalid answer. Would " + petName + " make a good family pet? Enter yes, no, or, if you think " + petName + " has family-friendly potential, enter with training.");
+                    familyPet = Console.ReadLine().ToLower();
+                }
             Console.WriteLine("Describe " + petName + "'s energy level?");
             energyLevel = Console.ReadLine();
             Console.WriteLine("Describe " + petName + "'s behavior.");
             behaviorReport = Console.ReadLine();
             Console.WriteLine("Has " + petName + " had its shots? Enter yes or no.");
-            userInput = Console.ReadLine();
-            userInput.ToLower();
+            userInput = Console.ReadLine().ToLower();
             if (userInput == "yes")
             {
                 shots = true;
@@ -155,8 +153,7 @@ namespace HumaneSociety
                 while (userInput != "yes" && userInput != "no")
                 {
                     Console.WriteLine("Sorry, that is an invalid response. Has " + petName + " had its shots? Enter yes or no.");
-                    userInput = Console.ReadLine();
-                    userInput.ToLower();
+                    userInput = Console.ReadLine().ToLower();
                     if (userInput == "yes")
                     {
                         shots = true;
@@ -169,7 +166,7 @@ namespace HumaneSociety
             }
             Console.WriteLine("What does " + petName + " eat? How much? How often?");
             diet = Console.ReadLine();
-            Console.WriteLine("Notes:");
+            Console.WriteLine("What else should potential adopters know about " + petName + " Notes:");
             petNotes = Console.ReadLine();
             EmployeeWork(adopter, adopters);
         }
@@ -241,8 +238,7 @@ namespace HumaneSociety
                     {
                         while (userInput != "yes" && userInput != "no")
                         {
-                            Console.WriteLine("Sorry, that is an invalid response.");
-                            Console.WriteLine("Has " + petName + " had its shots? Enter yes or no.");
+                            Console.WriteLine("Sorry, that is an invalid response. Has " + petName + " had its shots? Enter yes or no.");
                             userInput = Console.ReadLine();
                             userInput.ToLower();
                             if (userInput == "yes")
