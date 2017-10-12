@@ -24,6 +24,8 @@ namespace HumaneSocietyProject
         public string shots;
         public string petNotes;
 
+        List<List<string>> csvData = new List<List<string>>();
+
         public CSVReader(string csvPath)
         {
             using (var reader = new StreamReader(csvPath))
@@ -33,15 +35,41 @@ namespace HumaneSocietyProject
                 {
                     var line = reader.ReadLine();
                     string[] values = line.Split(',');
-                    int i = 0;
-                    string[] newArray = new string[15];
+                    List<string> csvLine = new List<string>();
+                    // int i = 0;
+                    //  string[] newArray = new string[15];
                     foreach (string value in values)
                     {
-                        newArray[i] = value;
-                        i++;
+                        csvLine.Add(value);
+                        // newArray[i] = value;
+                        // i++;
                     }
+                    csvData.Add(csvLine);
                 }
             }
         }
+
+        //    public void ReadCsvFile()
+        //{
+        //    using (var reader = new StreamReader = new List<string>();
+        //    var line = reader.ReadLine(csvData);
+        //    var value = line.Split(',');
+
+        //    foreach (lines in csvFile)
+        //    {
+        //        line.column[0]();
+        //        foreach (values in line)
+        //        {
+        //            value.index[0]();
+        //            index++;
+        //        }
+        //        column++;
+        //    }
+
+        //split up the data in the file var values = lines.Select(l => new { FirstColumn = l.Split(',').First(), Values = l.Split(',').Skip(1).Select(v => int.Parse(v)) });
+        //sort the data  foreach (var value in csvData)
+
+        //put the data into a column    Console.WriteLine(string.Format(Column '{0}'()));
+        //make another column and do it again    Column++;
     }
 }

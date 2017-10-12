@@ -34,7 +34,7 @@ namespace HumaneSociety
 
         public void EmployeeWork(Adopter adopter, List<Adopter>adopters)
         {
-            Console.WriteLine("Welcome to work! What is your next task? Enter 1 to create a new pet profile, 2 to see if a pet has been adopted yet, 3 to see if a pet has had its shots, or 4 to assist a customer.");
+            Console.WriteLine("What is your next task? Enter 1 to create a new pet profile, 2 to see if a pet has been adopted yet, 3 to see if a pet has had its shots, or 4 to assist a customer.");
             userInput = Console.ReadLine();
             if (userInput == "1")
             {
@@ -60,7 +60,6 @@ namespace HumaneSociety
 
         public void CreateNewPetProfile(Adopter adopter, List<Adopter>adopters)
         {
-            //petId is created automatically since it is the primary key
             adoptionStatus = false;
             Console.WriteLine("What kind of animal is this? (Eg. dog, cat, lizard, bird)");
             animal = Console.ReadLine().ToLower();
@@ -166,7 +165,7 @@ namespace HumaneSociety
             }
             Console.WriteLine("What does " + petName + " eat? How much? How often?");
             diet = Console.ReadLine();
-            Console.WriteLine("What else should potential adopters know about " + petName + " Notes:");
+            Console.WriteLine("What else should potential adopters know about " + petName + "? Notes:");
             petNotes = Console.ReadLine();
             EmployeeWork(adopter, adopters);
         }

@@ -10,9 +10,6 @@ namespace HumaneSociety
     {
         public string adopterName;
         public int adopterId = 100000;
-        public string adopterBirthMonth;
-        public int adopterBirthYear;
-        public int phoneNumber;
         public string residenceType;
         public bool petsPermitted;
         public string userInput;
@@ -81,39 +78,8 @@ namespace HumaneSociety
 
         public void CompleteApplication(Adopter adopter, List<Adopter>adopters)
         {
-            Console.WriteLine(adopterName + ", thank you for your interest in adopting a new pet! What is your date of birth? Enter your month of birth.");
-            adopterBirthMonth = Console.ReadLine().ToLower();
-            while (adopterBirthMonth != "january" && adopterBirthMonth != "february" && adopterBirthMonth != "march" && adopterBirthMonth != "april" && adopterBirthMonth != "may" && adopterBirthMonth != "june" && adopterBirthMonth != "july" && adopterBirthMonth != "august" && adopterBirthMonth != "september" && adopterBirthMonth != "october" && adopterBirthMonth != "november" && adopterBirthMonth != "december") ;
-            {
-                Console.WriteLine("What month were you born?");
-                adopterBirthMonth = Console.ReadLine();
-            }
-            Console.WriteLine("What year were you born?");
-            adopterBirthYear = Int32.Parse(Console.ReadLine());
-            if (adopterBirthYear < 1920 && adopterBirthYear > 2017)
-            {
-                while (adopterBirthYear < 1920 && adopterBirthYear > 2017)
-                {
-                    Console.WriteLine("That can't be right. Please enter your year of birth.");
-                    adopterBirthYear = Int32.Parse(Console.ReadLine());
-                }
-            }
-            else if (adopterBirthYear > 1999)
-            {
-                Console.WriteLine("Sorry, you must be 18 years or older to adopt a pet.");
-                EndProgram(adopter, adopters);
-            }
-            Console.WriteLine("Enter your phone number. Exclude dashes or other symbols or letters. Include your area code. Eg. 1234567890");
-            phoneNumber = Int32.Parse(Console.ReadLine());
-            if (phoneNumber <= 1000000000 && phoneNumber - 9999999999 >= 1)
-            {
-                {
-                    while (phoneNumber <= 1000000000 && phoneNumber - 9999999999 >= 1)
-                    Console.WriteLine("Sorry, that is an invalid phone number. Enter your phone number. Exclude dashes or other symbols or letters.Include your area code. Eg. 1234567890");
-                    phoneNumber = Int32.Parse(Console.ReadLine());
-                }
-            }
-            Console.WriteLine("Do you live in a house, apartment, condo, or studio? Enter other if you do not reside in one of those residence types.");
+            Console.WriteLine(adopterName + ", thank you for your interest in adopting a new pet!");
+            Console.WriteLine("Do you live in a house, apartment, or condo? Enter other if you do not reside in one of those residence types.");
             residenceType = Console.ReadLine();
             residenceType.ToLower();
             if (residenceType == "other")
